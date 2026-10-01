@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+enum Role {
+  USER
+  ADMIN
+}
+
+enum OrderStatus {
+  NEW
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  passwordHash String
+  role         Role     @default(USER)
+  createdAt    DateTime @default(now())
+  orders       Order[]
+}
+
+model Order {
+  id          String      @id @default(cuid())
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+  projectType String
+  addons      String[]
+  comment     String?
+  totalPrice  Int
+  status      OrderStatus @default(NEW)
+  createdAt   DateTime    @default(now())
+
+  @@index([userId])
+}
+
+model Project {
+  id            String   @id @default(cuid())
+  title         String
+  titleEn       String   @default("")
+  description   String
+  descriptionEn String   @default("")
+  category      String   @default("web")
+  categoryEn    String   @default("")
+  url           String   @default("")
+  visual        String   @default("visual-store")
+  sortOrder     Int      @default(0)
+  createdAt     DateTime @default(now())
+}
