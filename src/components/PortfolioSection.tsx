@@ -99,13 +99,12 @@ export default function PortfolioSection({ projects }: { projects: ProjectDTO[] 
           </div>
 
           <div className="portfolio-showcase-grid">
-            {visibleProjects.map((p, i) => {
+            {visibleProjects.map((p) => {
               const loc = localized(p);
               return (
                 <div
                   key={p.id}
                   className={`portfolio-item-card ${revealed ? "scroll-reveal-active" : "js-prep"}`}
-                  style={{ transitionDelay: `${i * 0.07}s` }}
                   data-category={p.category}
                 >
                   <div className={`card-visual ${p.visual}`}>
