@@ -18,12 +18,33 @@ export default function SiteFx() {
       const scrollTop = window.scrollY;
       if (progressBar) {
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        progressBar.style.width = `${docHeight > 0 ? (scrollTop / docHeight) * 100 : 0}%`;
+        progressBar.style.transform = `scaleX(${docHeight > 0 ? Math.min(1, scrollTop / docHeight) : 0})`;
       }
       if (header) header.classList.toggle("header-scrolled", scrollTop > 40);
       if (backToTopBtn) backToTopBtn.classList.toggle("visible", scrollTop > 500);
     };
+    // Лёгкий параллакс декоративного фона: только transform, один rAF на кадр, только десктоп
+    const parallaxEls = Array.from(document.querySelectorAll<HTMLElement>("[data-parallax]"));
+    const desktopMq = window.matchMedia("(min-width: 769px)");
+    let parallaxTicking = false;
+    const updateParallax = () => {
+      parallaxTicking = false;
+      if (!desktopMq.matches) return;
+      const y = Math.min(window.scrollY, 900);
+      parallaxEls.forEach((el) => {
+        const sy = parseFloat(el.dataset.parallax || "0");
+        const sx = parseFloat(el.dataset.parallaxX || "0");
+        el.style.transform = `translate3d(${(y * sx).toFixed(1)}px, ${(y * sy).toFixed(1)}px, 0)`;
+      });
+    };
+    const onScrollParallax = () => {
+      if (prefersReducedMotion || !parallaxEls.length || parallaxTicking) return;
+      parallaxTicking = true;
+      requestAnimationFrame(updateParallax);
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", onScrollParallax, { passive: true });
     onScroll();
 
     const onBackToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
@@ -51,22 +72,6 @@ export default function SiteFx() {
       );
       sections.forEach((section) => sectionObserver!.observe(section));
     }
-
-    // --- Ripple-эффект (делегирование, переживает re-render) ---
-    const onClickRipple = (e: MouseEvent) => {
-      const btn = (e.target as HTMLElement).closest<HTMLElement>(".action-btn");
-      if (!btn) return;
-      const rect = btn.getBoundingClientRect();
-      const size = Math.max(rect.width, rect.height) * 1.4;
-      const ripple = document.createElement("span");
-      ripple.className = "ripple-el";
-      ripple.style.width = ripple.style.height = `${size}px`;
-      ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
-      ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
-      btn.appendChild(ripple);
-      ripple.addEventListener("animationend", () => ripple.remove());
-    };
-    document.addEventListener("click", onClickRipple);
 
     // --- Кастомный курсор ---
     const dot = document.querySelector<HTMLElement>(".custom-cursor-dot");
@@ -150,7 +155,7 @@ export default function SiteFx() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
       backToTopBtn?.removeEventListener("click", onBackToTop);
-      document.removeEventListener("click", onClickRipple);
+      window.removeEventListener("scroll", onScrollParallax);
       sectionObserver?.disconnect();
       revealObserver.disconnect();
       removeCursorListeners?.();
