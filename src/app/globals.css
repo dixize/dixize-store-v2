@@ -25,9 +25,9 @@
     --ease-io: cubic-bezier(0.76, 0, 0.24, 1);
     --transition-base: color 0.3s var(--ease), background-color 0.3s var(--ease), border-color 0.3s var(--ease), opacity 0.3s var(--ease), box-shadow 0.3s var(--ease), transform 0.4s var(--ease);
 
-    --radius-sm: 4px;
-    --radius: 8px;
-    --radius-lg: 12px;
+    --radius-sm: 10px;
+    --radius: 18px;
+    --radius-lg: 26px;
 
     --font-display: 'Onest', 'Inter', system-ui, sans-serif;
     --font-body: 'Onest', 'Inter', system-ui, sans-serif;
@@ -611,9 +611,9 @@ body { font-feature-settings: "ss01", "cv11"; text-rendering: optimizeLegibility
 .nav-link-item { font-size: 13.5px; letter-spacing: 0.01em; }
 .nav-link-item::after { width: 100%; height: 1px; background: var(--text-white); transform: scaleX(0); transform-origin: right; transition: transform 0.45s var(--ease-io); }
 .nav-link-item:hover::after, .nav-link-item.active-link::after { width: 100%; transform: scaleX(1); transform-origin: left; }
-.lang-switch { border-radius: 6px; }
-.lang-switch-btn { border-radius: 4px; }
-.lang-switch-indicator { background: var(--text-white); border-radius: 4px; transition: transform 0.45s var(--ease-io); }
+.lang-switch { border-radius: 999px; }
+.lang-switch-btn { border-radius: 999px; }
+.lang-switch-indicator { background: var(--text-white); border-radius: 999px; transition: transform 0.45s var(--ease-io); }
 .burger-toggle span { transition: transform 0.45s var(--ease-io), opacity 0.25s var(--ease); }
 .mobile-nav-overlay { transform: none; transition: opacity 0.4s var(--ease), visibility 0.4s; }
 .mobile-nav-link { font-size: clamp(30px, 9vw, 44px); letter-spacing: -0.04em; }
@@ -628,7 +628,7 @@ body { font-feature-settings: "ss01", "cv11"; text-rendering: optimizeLegibility
 .mobile-nav-link:active { color: var(--accent); }
 
 /* ---------- Кнопки: fill-эффект ---------- */
-.action-btn { isolation: isolate; padding: 15px 28px; border-radius: 4px; font-size: 14px; font-weight: 500; letter-spacing: 0.005em; border: 1px solid transparent;
+.action-btn { isolation: isolate; padding: 14px 28px; border-radius: 14px; font-size: 14px; font-weight: 500; letter-spacing: 0.005em; border: 1px solid transparent;
     transition: color 0.45s var(--ease-io), border-color 0.45s var(--ease-io), transform 0.25s var(--ease), opacity 0.3s var(--ease); }
 .action-btn::before { content: ''; position: absolute; inset: -1px; z-index: -1; transform: translateY(101%); transition: transform 0.5s var(--ease-io); }
 .action-btn:hover::before, .action-btn:focus-visible::before { transform: translateY(0); }
@@ -694,11 +694,9 @@ section.scroll-reveal.js-prep:not(.scroll-reveal-active) :is(.meta-tag, .section
 /* Преимущества: общая сетка с линиями вместо трёх «пузырей» */
 .advantages-head.text-center { text-align: left; display: grid; grid-template-columns: 1fr 2fr; gap: 0 48px; align-items: start; margin-bottom: clamp(40px, 6vw, 72px); }
 .advantages-head .meta-tag { margin: 12px 0 0; }
-.advantages-grid { gap: 0; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
-.advantage-card { background: transparent; border: none; border-left: 1px solid var(--border-color); border-radius: 0; padding: 40px 32px 48px; position: relative; }
-.advantage-card:first-child { border-left: none; padding-left: 0; }
-.advantage-card::before { content: ''; position: absolute; left: 0; top: -1px; width: 100%; height: 1px; background: var(--text-white); transform: scaleX(0); transform-origin: left; transition: transform 0.7s var(--ease-io); }
-.adv-icon { display: flex; align-items: center; justify-content: center; width: 46px; height: 46px; margin-bottom: 40px; font-size: 20px; border: 1px solid var(--border-color); border-radius: 4px; filter: grayscale(1) contrast(1.1); opacity: 0.85; transition: border-color 0.4s var(--ease), transform 0.5s var(--ease); }
+.advantages-grid { gap: 24px; }
+.advantage-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 34px; position: relative; }
+.adv-icon { display: flex; align-items: center; justify-content: center; width: 46px; height: 46px; margin-bottom: 40px; font-size: 20px; border: 1px solid var(--border-color); border-radius: 14px; filter: grayscale(1) contrast(1.1); opacity: 0.85; transition: border-color 0.4s var(--ease), transform 0.5s var(--ease); }
 .advantage-card h3 { font-size: 21px; font-weight: 600; letter-spacing: -0.02em; color: var(--text-white); }
 .advantage-card p { max-width: 34ch; }
 
@@ -712,13 +710,13 @@ section.scroll-reveal.js-prep:not(.scroll-reveal-active) :is(.meta-tag, .section
 .portfolio-showcase-grid .portfolio-item-card:nth-child(n+4) { --reveal-delay: 0.24s; }
 
 /* ---------- Обо мне: wipe панели + стек ---------- */
-.about-visual-panel { background: var(--bg-raised); border-radius: 8px; height: 340px; clip-path: inset(0 0 0 0); transition: clip-path 1.1s var(--ease-io), border-color 0.4s var(--ease); }
+.about-visual-panel { background: var(--bg-raised); border-radius: var(--radius-lg); height: 340px; clip-path: inset(0 0 0 0); transition: clip-path 1.1s var(--ease-io), border-color 0.4s var(--ease); }
 section.scroll-reveal.js-prep:not(.scroll-reveal-active) .about-visual-panel { clip-path: inset(0 100% 0 0); }
 .about-visual-panel:hover { border-color: var(--border-strong); }
 .about-visual-label { text-transform: none; letter-spacing: 0.02em; font-size: 12.5px; font-weight: 500; }
 .tech-stack-track { animation-duration: 42s; }
 .tech-stack-marquee:hover .tech-stack-track { animation-play-state: paused; }
-.stack-badge { border-radius: 4px; color: #cfcdc8; background: transparent; }
+.stack-badge { border-radius: 12px; color: #cfcdc8; background: transparent; }
 .stack-badge:hover { background: var(--text-white); border-color: var(--text-white); color: #0c0c0c; }
 .about-bio-p { font-size: 16px; line-height: 1.7; }
 
@@ -727,7 +725,7 @@ section.scroll-reveal.js-prep:not(.scroll-reveal-active) .about-visual-panel { c
 .portfolio-teaser .section-title { max-width: 16ch; }
 .portfolio-teaser-text { margin: 22px 0 44px; max-width: 46ch; font-size: 16px; }
 .portfolio-preview-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 40px; }
-.preview-chip { position: relative; width: auto; height: auto; aspect-ratio: 4 / 3; border-radius: 6px; overflow: hidden; border: 1px solid var(--border-color); transition: opacity 0.5s var(--ease), transform 0.6s var(--ease), border-color 0.4s var(--ease), clip-path 0.9s var(--ease-io) var(--chip-delay, 0s); clip-path: inset(0 0 0 0); }
+.preview-chip { position: relative; width: auto; height: auto; aspect-ratio: 4 / 3; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-color); transition: opacity 0.5s var(--ease), transform 0.6s var(--ease), border-color 0.4s var(--ease), clip-path 0.9s var(--ease-io) var(--chip-delay, 0s); clip-path: inset(0 0 0 0); }
 .preview-chip::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 22px 22px; transition: transform 0.8s var(--ease); }
 .preview-chip:nth-child(2) { --chip-delay: 0.08s; }
 .preview-chip:nth-child(3) { --chip-delay: 0.16s; }
@@ -739,19 +737,19 @@ section.scroll-reveal.js-prep:not(.scroll-reveal-active) .preview-chip { clip-pa
 
 /* ---------- Модалка и карточки проектов ---------- */
 .portfolio-modal-backdrop { backdrop-filter: blur(6px); animation-duration: 0.4s; }
-.portfolio-modal-panel { border-radius: 12px; transform: translateY(18px); animation-duration: 0.55s; }
+.portfolio-modal-panel { border-radius: var(--radius-lg); transform: translateY(18px); animation-duration: 0.55s; }
 @keyframes modalPanelIn { to { transform: translateY(0); opacity: 1; } }
 .modal-close-btn { transition: transform 0.5s var(--ease), background-color 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease); }
 .modal-close-btn:hover { background: var(--text-white); border-color: var(--text-white); color: #0c0c0c; transform: rotate(90deg); }
-.filter-controls { border-radius: 6px; }
-.filter-btn { border-radius: 4px; }
+.filter-controls { border-radius: 14px; }
+.filter-btn { border-radius: 10px; }
 .filter-btn.active { background: var(--text-white); color: #0c0c0c; }
 .filter-btn:hover:not(.active) { color: var(--text-white); }
-.portfolio-item-card { border-radius: 8px; }
+.portfolio-item-card { border-radius: 22px; }
 .card-visual { height: 220px; }
 .card-visual::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 25% 15%, rgba(255, 255, 255, 0.09), transparent 55%); transition: transform 0.9s var(--ease); }
 .card-visual::after { transition: transform 0.9s var(--ease); }
-.tech-tag { border-radius: 3px; font-size: 11.5px; }
+.tech-tag { border-radius: 8px; font-size: 11.5px; }
 .card-project-title { font-size: 22px; letter-spacing: -0.025em; }
 .card-hyperlink { color: var(--text-white); font-size: 13.5px; font-weight: 500; }
 .card-hyperlink span:first-child { padding-bottom: 3px; background: linear-gradient(currentColor, currentColor) left bottom / 0% 1px no-repeat; transition: background-size 0.45s var(--ease-io); }
@@ -759,22 +757,22 @@ section.scroll-reveal.js-prep:not(.scroll-reveal-active) .preview-chip { clip-pa
 .card-hyperlink span:last-child { color: var(--accent); }
 
 /* ---------- Конфигуратор и формы ---------- */
-.form-container-box { background: var(--bg-raised); border-radius: 12px; padding: clamp(28px, 5vw, 56px); }
-.wizard-progress-num { border-radius: 4px; }
+.form-container-box { background: var(--bg-raised); border-radius: var(--radius-lg); padding: clamp(28px, 5vw, 56px); }
+.wizard-progress-num { border-radius: 50%; }
 .wizard-progress-item.completed .wizard-progress-num { border-color: var(--accent); color: var(--accent); }
 .config-step { animation-duration: 0.5s; }
 .group-label { text-transform: none; letter-spacing: 0.01em; font-size: 13px; font-weight: 500; }
-.selector-tile { border-radius: 8px; transition: transform 0.4s var(--ease), border-color 0.3s var(--ease), background-color 0.3s var(--ease); }
+.selector-tile { border-radius: var(--radius); transition: transform 0.4s var(--ease), border-color 0.3s var(--ease), background-color 0.3s var(--ease); }
 .selector-tile:hover { box-shadow: none; transform: translateY(-3px); border-color: var(--border-strong); }
 .selector-tile.active { background: var(--bg-surface-strong); }
 .tile-example-link { color: var(--text-white); border-bottom: 1px solid var(--border-strong); transition: border-color 0.3s var(--ease); }
 .tile-example-link:hover { border-bottom-color: var(--accent); }
-.addon-checkbox-label { border-radius: 8px; }
+.addon-checkbox-label { border-radius: var(--radius); }
 .addon-checkbox-label:hover { border-color: var(--border-strong); }
-.custom-checkbox { border-radius: 3px; }
-.input-wrapper input, .input-wrapper textarea, .input-wrapper select { border-radius: 6px; }
+.custom-checkbox { border-radius: 6px; }
+.input-wrapper input, .input-wrapper textarea, .input-wrapper select { border-radius: 13px; }
 .input-wrapper input:hover, .input-wrapper textarea:hover { border-color: var(--border-strong); }
-.price-counter-panel, .price-summary-panel { border-radius: 8px; }
+.price-counter-panel, .price-summary-panel { border-radius: var(--radius); }
 .success-radial-icon { border-radius: 50%; }
 .pulse-price, .counter-value { transition: color 0.3s var(--ease); }
 @keyframes pulsePrice { 0% { transform: translateY(0); opacity: 0.4; } 100% { transform: translateY(0); opacity: 1; } }
@@ -783,19 +781,17 @@ section.scroll-reveal.js-prep:not(.scroll-reveal-active) .preview-chip { clip-pa
 .site-footer { padding: 72px 0 28px; }
 .footer-nav a, .social-link { position: relative; width: fit-content; background: linear-gradient(currentColor, currentColor) left bottom / 0% 1px no-repeat; padding-bottom: 2px; transition: color 0.3s var(--ease), background-size 0.45s var(--ease-io); }
 .footer-nav a:hover, .social-link:hover { color: var(--text-white); background-size: 100% 1px; }
-.back-to-top { border-radius: 4px; }
+.back-to-top { border-radius: 50%; }
 
 /* ---------- Auth / account / admin: цвета в общей системе ---------- */
 .auth-switch a { color: var(--text-white); text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 4px; transition: text-decoration-color 0.3s var(--ease); }
 .auth-switch a:hover { text-decoration-color: var(--accent); }
-.status-badge, .data-table-wrap, .mini-btn, .admin-tabs, .admin-tab, .admin-form, .status-select, .order-details, .auth-error { border-radius: 6px; }
 .data-table tbody tr { transition: background-color 0.3s var(--ease); }
 .data-table tbody tr:hover { background: var(--bg-surface); }
 
 /* ---------- Hover-эффекты только на устройствах с hover ---------- */
 @media (hover: hover) and (pointer: fine) {
-    .advantage-card:hover { background: var(--bg-surface); }
-    .advantage-card:hover::before { transform: scaleX(1); }
+    .advantage-card:hover { background: var(--bg-surface-strong); border-color: var(--border-strong); transform: translateY(-4px); }
     .advantage-card:hover .adv-icon { transform: translateY(-4px); border-color: var(--border-strong); }
     .portfolio-item-card:hover { transform: translateY(-4px); border-color: var(--border-strong); background: var(--bg-surface-strong); }
     .portfolio-item-card:hover .card-visual::after { transform: scale(1.1) translate(-2%, -2%); }
@@ -810,14 +806,15 @@ section.scroll-reveal.js-prep:not(.scroll-reveal-active) .preview-chip { clip-pa
 @media (max-width: 1024px) {
     .advantages-head.text-center { grid-template-columns: 1fr; gap: 0; }
     .advantages-head .meta-tag { margin: 0 0 18px; }
-    .advantages-grid { grid-template-columns: 1fr; }
-    .advantage-card, .advantage-card:first-child { border-left: none; border-top: 1px solid var(--border-color); padding: 32px 0; }
-    .advantage-card:first-child { border-top: none; }
-    .advantage-card::before { display: none; }
-    .adv-icon { margin-bottom: 24px; }
+    .advantages-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .adv-icon { margin-bottom: 28px; }
     .hero-section { grid-template-columns: 1fr; row-gap: 32px; }
     .hero-lead-text, .hero-button-group { grid-column: 1; }
     .portfolio-preview-strip { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+    .advantages-grid { grid-template-columns: 1fr; gap: 16px; }
+    .advantage-card { padding: 26px; border-radius: 20px; }
 }
 @media (max-width: 768px) {
     .glow-ambience::before, .glow-ambience::after, .glow-sphere-1 { display: none; }
